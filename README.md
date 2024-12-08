@@ -1,6 +1,6 @@
 # chef_app
 
-A new Flutter project.
+chef app using Api, statemanagement (Cubit).
 
 ## Getting Started
 
