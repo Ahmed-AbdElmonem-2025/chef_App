@@ -10,7 +10,10 @@ class DioHelper {
       BaseOptions(
        
         baseUrl: EndPoint.baseUrl, ),
+        
     );
+ dio.options.connectTimeout = const Duration(seconds: 25);  // وقت انتظار الاتصال بالسيرفر 
+ dio.options.receiveTimeout = const Duration(seconds: 25);  // وقت انتظار استلام البيانات من السيرفر 
   }
 
 

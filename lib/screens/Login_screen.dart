@@ -3,7 +3,6 @@ import 'package:chief_app/cubit/auth_states.dart';
 import 'package:chief_app/screens/home_screen.dart';
 import 'package:chief_app/shared/app_colors.dart';
 import 'package:chief_app/widgets/custom_text_field.dart';
-import 'package:chief_app/widgets/navigation_widgets.dart';
 import 'package:chief_app/widgets/toast_message_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +47,9 @@ class LoginScreen extends StatelessWidget {
                     listener: (context, state) {
                       if (state is LoginSuccessState) {
                         showSnackBarItem('success', context, true);
-                        navigateTopush(context: context, wiget: const HomeScreen());
+                         Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) {
+                         return const HomeScreen();
+           },));
                       } else if(state is LoginErrorState) {
                          showSnackBarItem(state.errorMsg, context, false);
                       }
@@ -106,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                                     cubit.login(
                                       email: emailController.text,
                                       password: passwordController.text);
-
+                                   
                                   } else {}
                                 },
                                 child: state is LoginLoadingState ? CircularProgressIndicator(color: AppColors.black,) : const Text(

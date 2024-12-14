@@ -1,3 +1,4 @@
+ 
 import 'package:chief_app/cubit/menu_cubit/menu_cubit.dart';
 import 'package:chief_app/cubit/menu_cubit/menu_states.dart';
 import 'package:chief_app/shared/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../widgets/menu_item_widget.dart';
+import '../widgets/toast_message_widget.dart';
 import 'add_meal_screen.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -14,6 +16,7 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<MenuCubit>(context);
+ 
     return BlocConsumer<MenuCubit, MenuState>(
       listener: (context, state) {
         if (cubit.meals.isEmpty) {
@@ -23,7 +26,12 @@ class MenuScreen extends StatelessWidget {
         }
         if (state is DeleteDishSucessState) {
           print('meal is deleted');
-        }else if(state is DeleteDishErrorState){
+        }
+        if (state is DeleteDishSucessState) {
+          showSnackBarItem('meal is deleted sucess', context, true);
+        }
+         if(state is DeleteDishErrorState){
+          showSnackBarItem('something wrong', context, false);
           print('meal not deleted');
         }
 

@@ -3,6 +3,17 @@ abstract class AuthStates {}
 class InitialState extends AuthStates {}
 
 
+class SignUpImageUpdatedState extends AuthStates{}
+class SignUpSuccessState extends AuthStates{
+  final String  Msg;
+  SignUpSuccessState(this.Msg);
+}
+class SignUpErrorState extends AuthStates{
+  final String errorMsg;
+  SignUpErrorState(this.errorMsg);
+}
+class SignUpLoadingState extends AuthStates{}
+
 
 class LoginSuccessState extends AuthStates {}
 class LoginErrorState extends AuthStates {
